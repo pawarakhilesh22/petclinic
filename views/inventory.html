@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+    <h1>🐾 PetClinic</h1>
+    <p>Pet Owner Management System</p>
+</div>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/inventory" class="active">Inventory</a>
+    <a href="/about">About</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card" style="width:90%;">
+
+<h2>Pet Inventory</h2>
+
+<table border="1" width="100%" cellspacing="0" cellpadding="10">
+
+<thead>
+
+<tr>
+<th>Owner Name</th>
+<th>Address</th>
+<th>Contact</th>
+<th>Pet Name</th>
+<th>Pet Category</th>
+</tr>
+
+</thead>
+
+<tbody id="inventoryTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+fetch('/owners')
+.then(res => res.json())
+.then(data => {
+
+    let rows = "";
+
+    data.forEach(owner => {
+
+        rows += `
+        <tr>
+            <td>${owner.owner_name}</td>
+            <td>${owner.address}</td>
+            <td>${owner.contact}</td>
+            <td>${owner.pet_name}</td>
+            <td>${owner.pet_category}</td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById("inventoryTable").innerHTML = rows;
+
+});
+
+</script>
+
+</body>
+</html>

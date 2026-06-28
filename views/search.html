@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Search Owners</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+
+<body>
+
+<div class="page-center">
+
+    <div class="form-card" style="width:700px;">
+
+        <h2>Search Owners</h2>
+
+        <label>Search by Owner Name, Pet Name or Category</label>
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search by Owner, Pet or Category">
+
+        <button onclick="searchOwner()">
+            Search
+        </button>
+
+        <p id="message" style="text-align:center;color:red;font-size:18px;"></p>
+
+        <div id="resultSection" style="display:none;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Owner</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>Pet</th>
+                        <th>Category</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="searchTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="back-home">
+            <a href="/">⬅ Back to Home</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+async function searchOwner(){
+
+    const key = document.getElementById('searchBox').value.trim();
+
+    if(key === ""){
+        alert("Please enter Owner Name, Pet Name or Category.");
+        return;
+    }
+
+    const res = await fetch('/owners/search/' + key);
+    const data = await res.json();
+
+    const table = document.getElementById('searchTable');
+    const result = document.getElementById('resultSection');
+    const msg = document.getElementById('message');
+
+    table.innerHTML = "";
+
+    if(data.length === 0){
+        result.style.display = "none";
+        msg.innerHTML = "No records found.";
+        return;
+    }
+
+    msg.innerHTML = "";
+    result.style.display = "block";
+
+    data.forEach(owner => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${owner.owner_name}</td>
+            <td>${owner.address}</td>
+            <td>${owner.contact}</td>
+            <td>${owner.pet_name}</td>
+            <td>${owner.pet_category}</td>
+        </tr>
+        `;
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

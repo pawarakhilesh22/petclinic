@@ -1,0 +1,75 @@
+body{
+    font-family: Arial;
+    margin: 40px;
+}
+
+input,
+select,
+button{
+    width:300px;
+    padding:10px;
+    margin:10px 0;
+    display:block;
+}
+
+table{
+    margin-top:20px;
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+}
+
+/* Center all page content */
+
+.page-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.form-card{
+    width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.form-card h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-card input,
+.form-card select{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-card button{
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-card button:hover{
+    background: #0056b3;
+}
+
+.back-home{
+    text-align: center;
+    margin-top: 20px;
+}
